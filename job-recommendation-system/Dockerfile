@@ -1,9 +1,9 @@
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:24-jdk
 
 WORKDIR /app
 
-COPY . .
+COPY target/*.jar app.jar
 
-RUN ./mvnw clean install -DskipTests
+EXPOSE 8080
 
-CMD ["java", "-jar", "target/*.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
