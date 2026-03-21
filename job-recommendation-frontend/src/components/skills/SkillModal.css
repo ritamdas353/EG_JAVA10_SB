@@ -1,0 +1,71 @@
+/* Modal box size (change this to resize) */
+.modal {
+  width: 420px;        /* 🔥 adjust width */
+  height: 210px;       /* 🔥 adjust height */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Selected skill tags (top section if you use it) */
+.skill-tag {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 2px;
+  background: #3243A5;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Skills container (GRID 3 per row) */
+.tags {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 🔥 3 per row */
+  gap: 10px;              /* spacing between items */
+  padding: 10px;         /* reduced from 30px */
+  flex: 1;
+  overflow-y: auto;      /* scroll inside modal */
+  justify-items: start;  /* prevent stretching */
+}
+
+/* Individual tag */
+.tags .tag {
+  width: 100%;              /* 🔥 fill grid cell */
+  height: 30px;             /* 🔥 fixed height for uniform look */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* center text */
+
+  background: #777;
+  color: #fff;
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
+}
+
+/* Hover effect */
+.tags .tag:hover {
+  background: #999;
+  transform: scale(1.05);
+}
+
+/* Selected state */
+.tags .tag.active {
+  background: #3243A5;
+  color: white;
+}
+
+/* Optional: different hover when selected */
+.tags .tag.active:hover {
+  background: #2a3790;
+}

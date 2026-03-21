@@ -1,0 +1,56 @@
+.company-jobs-container {
+    padding: 20px;
+}
+
+.search-bar {
+    margin-bottom: 15px;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* 🔥 SCROLLABLE WINDOW */
+.jobs-list {
+    margin-top: 5px;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #d2d2d2;
+}
+
+/* Scrollbar styling (optional) */
+.jobs-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.jobs-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.add-job-btn {
+    border: 2px solid #24b4fb;
+    background-color: #24b4fb;
+    border-radius: 0.9em;
+    cursor: pointer;
+    padding: 0.8em 1.2em 0.8em 1em;
+    transition: all ease-in-out 0.2s;
+    font-size: 16px;
+}
+
+.add-job-btn span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+}
+
+.add-job-btn:hover {
+    background-color: #0071e2;
+}

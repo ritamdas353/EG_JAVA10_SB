@@ -1,0 +1,6 @@
+<input name="applicant_name" placeholder="Name" onChange={handleChange} />
+<input name="applicant_ph_num" placeholder="Phone" onChange={handleChange} />
+<input name="applicant_yrs_of_exp" placeholder="Experience" onChange={handleChange} />
+<input name="applicant_cgpa" placeholder="CGPA" onChange={handleChange} />
+<input name="applicant_high_qual" placeholder="Highest Qualification" onChange={handleChange} />
+<input name="applicant_address" placeholder="Address" onChange={handleChange} />

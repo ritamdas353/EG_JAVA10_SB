@@ -1,0 +1,64 @@
+.header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 35px;
+
+  background: linear-gradient(90deg,#111827,#1f2937);
+  border-bottom: 3px solid #3b82f6;
+
+  color: white;
+}
+
+/* APP NAME */
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  cursor:pointer;
+  letter-spacing:1px;
+}
+
+/* NAVIGATION */
+
+.nav{
+  display:flex;
+  gap:14px;
+}
+
+/* BUTTONS */
+
+.nav button{
+
+  padding:7px 14px;
+
+  border-radius:6px;
+  border:2px solid transparent;
+
+  background:transparent;
+  color:white;
+
+  cursor:pointer;
+  font-size:14px;
+
+  transition:0.2s;
+}
+
+/* HOVER */
+
+.nav button:hover{
+  border-color:#3b82f6;
+  background:rgba(59,130,246,0.15);
+}
+
+/* LOGOUT */
+
+.logout-btn{
+  border:2px solid #ef4444;
+}
+
+.logout-btn:hover{
+  background:#ef4444;
+}
