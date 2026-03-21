@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./Signup.css";
+import API from "../../services/api";
 
 function Signup() {
 
@@ -12,27 +13,21 @@ function Signup() {
 
   const handleSignup = async () => {
 
-  const response = await fetch("http://localhost:8080/api/user/sign-up", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
+    const response = await API.post("/api/user/sign-up", {
       user_email: email,
       user_password: password,
       user_role: type.toUpperCase()
-    })
-  });
+    });
 
-  const data = await response.json();
+    const data = await response.data;
 
-  if (data.success) {
-    alert("Signup successful!");
-    navigate(`/login/${type}`, { replace: true });
-  } else {
-    alert("Signup failed");
-  }
-};
+    if (data.success) {
+      alert("Signup successful!");
+      navigate(`/login/${type}`, { replace: true });
+    } else {
+      alert("Signup failed");
+    }
+  };
 
   return (
     <div className="signup-container">

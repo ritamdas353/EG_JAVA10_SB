@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import "./Login.css";
+import API from "../../services/api";
 
 function Login() {
 
@@ -12,18 +13,12 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          user_email: email,
-          user_password: password
-        })
+      const response = await API.post("/api/user/login", {
+        user_email: email,
+        user_password: password
       });
 
-      const data = await response.json();
+      const data = await response.data;
 
       if (!data.success) {
         alert("Login failed");

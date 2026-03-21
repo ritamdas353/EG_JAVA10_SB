@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./EditCompanyProfile.css";
+import API from "../../services/api";
 
 const EditCompanyProfile = ({ profile, fetchProfile }) => {
   const [formData, setFormData] = useState({
@@ -47,8 +47,8 @@ const EditCompanyProfile = ({ profile, fetchProfile }) => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.put(
-        "http://localhost:8080/api/company/updateCompany",
+      await API.put(
+        "/api/company/updateCompany",
         formData,
         {
           headers: {

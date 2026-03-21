@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import "./SkillModal.css"
+import API from "../../services/api";
 
 export default function SkillsModal({
   selectedSkills,
@@ -16,7 +16,7 @@ export default function SkillsModal({
 
   // 🔥 Fetch from YOUR API
   useEffect(() => {
-    axios.get("http://localhost:8080/api/skill/presentSkills")
+    API.get("/api/skill/presentSkills")
       .then(res => {
         if (res.data.success) {
           setSkills(res.data.skills); // ✅ IMPORTANT FIX

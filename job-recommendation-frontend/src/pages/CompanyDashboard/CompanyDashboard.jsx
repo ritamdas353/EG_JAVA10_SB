@@ -7,6 +7,8 @@ import EditCompanyProfile from "./EditCompanyProfile";
 import Account from "../../components/account/Account";
 import CompanyJobs from "./CompanyJobs";
 
+import API from "../../services/api";
+
 function CompanyDashboard() {
 
   const navigate = useNavigate();
@@ -16,13 +18,13 @@ function CompanyDashboard() {
 
   const fetchProfile = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/company/companyProfile", {
+      const res = await API.get("/api/company/companyProfile", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`
         }
       });
 
-      const data = await res.json();
+      const data = await res.data;
       setProfile(data);
     } catch (err) {
       console.error(err);
@@ -30,19 +32,13 @@ function CompanyDashboard() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/company/companyProfile", {
+    API.get("/api/company/companyProfile", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
     })
       .then(res => {
-        if (!res.ok) {
-          return null;
-        }
-        return res.json();
-      })
-      .then(data => {
-        setProfile(data);
+        setProfile(res.data);
         setLoading(false);
       })
       .catch(() => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./EditApplicantProfile.css";
 import SkillsModal from "../../components/skills/SkillsModal";
+import API from "../../services/api";
 
 const EditApplicantProfile = ({ profile, fetchProfile }) => {
   const [formData, setFormData] = useState({
@@ -58,8 +58,8 @@ const EditApplicantProfile = ({ profile, fetchProfile }) => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.put(
-        "http://localhost:8080/api/applicant/updateApplicant",
+      await API.put(
+        "/api/applicant/updateApplicant",
         formData,
         {
           headers: {
@@ -81,8 +81,8 @@ const EditApplicantProfile = ({ profile, fetchProfile }) => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.put(
-        "http://localhost:8080/api/applicant/updateSkills",
+      await API.put(
+        "/api/applicant/updateSkills",
         skills.map(s => s.skill_id), // 🔥 IMPORTANT
         {
           headers: {

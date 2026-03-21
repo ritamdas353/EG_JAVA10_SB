@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import JobCard from "../../components/JobCard";
 import "./CompanyJobs.css";
 import SkillsModal from "../../components/skills/SkillsModal";
 import EditJobModal from "../../components/EditJobModal/EditJobModal";
+import API from "../../services/api";
 
 const CompanyJobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -22,8 +22,8 @@ const CompanyJobs = () => {
 
     const fetchJobs = async () => {
         try {
-            const res = await axios.get(
-                "http://localhost:8080/api/company/companyjobs",
+            const res = await API.get(
+                "/api/company/companyjobs",
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -43,8 +43,8 @@ const CompanyJobs = () => {
         if (!window.confirm("Are you sure you want to delete this job?")) return;
 
         try {
-            await axios.delete(
-                `http://localhost:8080/api/job/deleteJob/${jobId}`,
+            await API.delete(
+                `/api/job/deleteJob/${jobId}`,
                 {
                     headers: { Authorization: `Bearer ${token}` },
                 }
@@ -61,8 +61,8 @@ const CompanyJobs = () => {
         if (!window.confirm(`Notify applicants with at least ${Math.round(minPercentage * 100)}% skill match?`)) return;
 
         try {
-            await axios.post(
-                `http://localhost:8080/api/job/notify/${job.jobId}/${minPercentage}`,
+            await API.post(
+                `/api/job/notify/${job.jobId}/${minPercentage}`,
                 {},
                 {
                     headers: { Authorization: `Bearer ${token}` },
@@ -83,8 +83,8 @@ const CompanyJobs = () => {
 
     const saveEditedJob = async (updatedData) => {
         try {
-            await axios.put(
-                `http://localhost:8080/api/job/${selectedJobForEdit.jobId}`,
+            await API.put(
+                `/api/job/${selectedJobForEdit.jobId}`,
                 {
                     ...updatedData,
                     min_exp: Number(updatedData.min_exp),
@@ -127,8 +127,8 @@ const CompanyJobs = () => {
 
     const createJob = async (data) => {
         try {
-            await axios.post(
-                "http://localhost:8080/api/job/addJob",
+            await API.post(
+                "/api/job/addJob",
                 {
                     title: data.title,
                     details: data.details,
@@ -152,8 +152,8 @@ const CompanyJobs = () => {
 
     const saveJobSkills = async () => {
         try {
-            await axios.put(
-                "http://localhost:8080/api/job/updateJobSkills",
+            await API.put(
+                "/api/job/updateJobSkills",
                 {
                     jobId: selectedJob.jobId,
                     skillIds: selectedSkills.map((s) => s.skill_id),

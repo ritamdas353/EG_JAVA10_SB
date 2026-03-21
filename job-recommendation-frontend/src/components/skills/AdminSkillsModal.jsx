@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-import "./SkillModal.css"; // reuse same CSS 🔥
+import "./SkillModal.css";
+import API from "../../services/api";
 
 export default function AdminSkillModal({ skill, closeModal, refresh }) {
   const [name, setName] = useState("");
@@ -16,14 +16,14 @@ export default function AdminSkillModal({ skill, closeModal, refresh }) {
 
     if (skill) {
       // EDIT
-      await axios.put(
-        `http://localhost:8080/api/skill/${skill.id}`,
+      await API.put(
+        `/api/skill/${skill.id}`,
         payload
       );
     } else {
       // ADD
-      await axios.post(
-        "http://localhost:8080/api/skill/addSkills",
+      await API.post(
+        "/api/skill/addSkills",
         payload
       );
     }

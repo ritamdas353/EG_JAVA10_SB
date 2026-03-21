@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import SkillsModal from "../../components/skills/SkillsModal";
 import "./ApplicantCreateProfile.css"
+import API from "../../services/api";
 
 export default function ApplicantCreateProfile() {
   const navigate = useNavigate();
@@ -14,14 +14,13 @@ export default function ApplicantCreateProfile() {
           skill_id: s.skill_id   // 🔥 IMPORTANT (backend format)
         }))
       };
-      
-      const res = await axios.post(
-        "http://localhost:8080/api/applicant/registerApplicant",
+
+      const res = await API.post(
+        "/api/applicant/registerApplicant",
         payload,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json"
+            Authorization: `Bearer ${localStorage.getItem("token")}`
           }
         }
       );
@@ -29,7 +28,7 @@ export default function ApplicantCreateProfile() {
       console.log(res.data);
       alert("Profile created successfully!");
       navigate("/applicant/dashboard", { replace: true });
-      
+
     } catch (err) {
       console.error(err);
       alert("Error creating profile");
@@ -106,7 +105,7 @@ export default function ApplicantCreateProfile() {
           setSelectedSkills={(skills) =>
             setFormData({ ...formData, skills })
           }
-          showDoneButton = {true}
+          showDoneButton={true}
           closeModal={() => setShowModal(false)}
         />
       )}

@@ -1,24 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./CompanyCreateProfile.css"
+import API from "../../services/api";
 
 export default function CompanyCreateProfile() {
   const navigate = useNavigate();
   const handleSubmit = async () => {
     try {
 
-      const res = await axios.post(
-        "http://localhost:8080/api/company/registerCompany",
-        formData,
+      const res = await API.post(
+        "/api/company/registerCompany",
+        payload,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json"
+            Authorization: `Bearer ${localStorage.getItem("token")}`
           }
         }
       );
-
       console.log(res.data);
       alert("Profile created successfully!");
       navigate("/company/dashboard", { replace: true });

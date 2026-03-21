@@ -1,7 +1,7 @@
 // ViewProfile.jsx
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./ViewProfile.css";
+import API from "../../services/api";
 
 const ViewProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -14,8 +14,8 @@ const ViewProfile = () => {
     try {
       const token = localStorage.getItem("token"); // or wherever you stored it
 
-      const res = await axios.get(
-        "http://localhost:8080/api/company/companyProfile",
+      const res = await API.get(
+        "/api/company/companyProfile",
         {
           headers: {
             Authorization: `Bearer ${token}`,

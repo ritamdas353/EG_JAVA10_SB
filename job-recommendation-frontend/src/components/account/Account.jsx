@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Account.css";
+import API from "../../services/api";
 
 const Account = () => {
   const email = localStorage.getItem("email");
@@ -16,10 +17,8 @@ const Account = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:8080/api/user/delUser", {
-        method: "DELETE",
+      const response = await API.delete("/api/user/delUser", {
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
@@ -41,18 +40,16 @@ const Account = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch(
-        "http://localhost:8080/api/user/updateUserPassword",
+      const response = await API.put(
+        "/api/user/updateUserPassword",
         {
-          method: "PUT",
+          oldPassword,
+          newPassword,
+        },
+        {
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            oldPassword,
-            newPassword,
-          }),
         }
       );
 

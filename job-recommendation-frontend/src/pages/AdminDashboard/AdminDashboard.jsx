@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import SkillCard from "../../components/skills/SkillCard";
 import AdminSkillsModal from "../../components/skills/AdminSkillsModal";
 import "./AdminDashboard.css";
+import API from "../../services/api";
 
 const AdminDashboard = () => {
     const [skills, setSkills] = useState([]);
@@ -14,8 +14,8 @@ const AdminDashboard = () => {
         try {
             const token = localStorage.getItem("token");
 
-            const res = await axios.get(
-                "http://localhost:8080/api/skill/presentSkills",
+            const res = await API.get(
+                "/api/skill/presentSkills",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -47,7 +47,7 @@ const AdminDashboard = () => {
 
     const handleDelete = async (id) => {
         if (!window.confirm("Delete this skill?")) return;
-        await axios.delete(`http://localhost:8080/api/skill/${id}`);
+        await API.delete(`/api/skill/${id}`);
         fetchSkills();
     };
 

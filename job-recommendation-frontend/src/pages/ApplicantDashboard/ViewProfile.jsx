@@ -1,8 +1,8 @@
 // ViewProfile.jsx
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./ViewProfile.css";
 import SkillsModal from "../../components/skills/SkillsModal";
+import API from "../../services/api";
 
 const ViewProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -18,8 +18,8 @@ const ViewProfile = () => {
     try {
       const token = localStorage.getItem("token"); // or wherever you stored it
 
-      const res = await axios.get(
-        "http://localhost:8080/api/applicant/applicantProfile",
+      const res = await API.get(
+        "/api/applicant/applicantProfile",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -43,8 +43,8 @@ const ViewProfile = () => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.put(
-        "http://localhost:8080/api/applicant/updateSkills",
+      await API.put(
+        "/api/applicant/updateSkills",
         selectedSkills.map(s => s.skill_id), // 🔥 IMPORTANT
         {
           headers: {

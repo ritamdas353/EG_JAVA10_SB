@@ -5,9 +5,7 @@ const EditJobModal = ({
     job,
     closeModal,
     onSave,
-    onCreate,
-    showSaveButton = false,
-    showCreateJobButton
+    onCreate
 }) => {
     const [formData, setFormData] = useState({
         title: "",
