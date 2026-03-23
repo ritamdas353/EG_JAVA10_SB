@@ -23,16 +23,14 @@ const Account = () => {
         },
       });
 
-      if (!response.ok) {
-        alert("Failed to delete account");
-        return;
-      }
-
+      // axios success = no error thrown
+      alert("Account deleted successfully");
       localStorage.clear();
       window.location.href = "/";
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
-      alert("Server error");
+      alert(err.response?.data || "Server error");
     }
   };
 
@@ -52,11 +50,6 @@ const Account = () => {
           },
         }
       );
-
-      if (!response.ok) {
-        alert("Password update failed");
-        return;
-      }
 
       alert("Password updated successfully");
 

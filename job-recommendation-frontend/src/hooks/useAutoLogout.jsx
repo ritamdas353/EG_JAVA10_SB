@@ -1,14 +1,21 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useRef } from "react";
 
 const useAutoLogout = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const hasLoggedOut = useRef(false);
+
   const logout = () => {
-    alert("Session expired. Please login again.");
+    if (hasLoggedOut.current) return;
+    hasLoggedOut.current = true;
+
     localStorage.removeItem("token");
     localStorage.removeItem("tokenExpiry");
+
+    alert("Session expired. Please login again.");
     navigate("/", { replace: true });
   };
 
