@@ -1,5 +1,7 @@
 package com.jobportal.job_recommendation_system.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -13,10 +15,12 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String sender;
 
+    private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
+    
     public void sendEMail(String to, String subject, String text) {
 
         try {
-
+            logger.info("Sending email to: {}", to);
             SimpleMailMessage mailMessage =
                     new SimpleMailMessage();
 
@@ -27,6 +31,9 @@ public class EmailService {
 
             javaMailSender.send(mailMessage);
 
-        } catch (Exception ignored) {}
+            logger.info("Email sent successfully!");
+        } catch (Exception e) {
+            logger.error("Email sending failed", e);
+        }
     }
 }
