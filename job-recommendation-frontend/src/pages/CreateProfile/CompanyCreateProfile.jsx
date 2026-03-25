@@ -10,7 +10,7 @@ export default function CompanyCreateProfile() {
 
       const res = await API.post(
         "/api/company/registerCompany",
-        payload,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`

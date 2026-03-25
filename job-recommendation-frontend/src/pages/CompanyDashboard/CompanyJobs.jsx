@@ -9,6 +9,8 @@ const CompanyJobs = () => {
     const [jobs, setJobs] = useState([]);
     const [search, setSearch] = useState("");
 
+    const role = localStorage.getItem("role");
+
     const [showSkillsModal, setShowSkillsModal] = useState(false);
     const [selectedJob, setSelectedJob] = useState(null);
     const [selectedSkills, setSelectedSkills] = useState([]);
@@ -60,6 +62,11 @@ const CompanyJobs = () => {
     const handleNotify = async (job, minPercentage) => {
         if (!window.confirm(`Notify applicants with at least ${Math.round(minPercentage * 100)}% skill match?`)) return;
 
+        if (role !== "COMPANY") {
+            alert("You are not authorized");
+            return;
+        }
+        
         try {
             await API.post(
                 `/api/job/notify/${job.jobId}/${minPercentage}`,
